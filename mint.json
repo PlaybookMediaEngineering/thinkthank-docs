@@ -39,7 +39,7 @@
   "navigation": [
     { "group": "Getting Started", "pages": ["introduction", "data-model"] },
     {
-      "group": "Quickstart",
+      "group": "Get Started",
       "pages": [
         {
           "group": "Typescript",
