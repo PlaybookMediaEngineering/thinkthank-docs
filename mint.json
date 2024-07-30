@@ -35,7 +35,7 @@
     "href": "https://dub.co",
     "light": "/logos/wordmark.svg"
   },
-  "name": "Dub.co Docs",
+  "name": "Think Thank Docs",
   "navigation": [
     { "group": "Getting Started", "pages": ["introduction", "data-model"] },
     {
