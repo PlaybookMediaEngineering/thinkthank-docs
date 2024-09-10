@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-description: "Learn how to create a short link using the Dub Go SDK."
+description: "Learn how to integrate Dub with Go."
 ---
 
 import Prerequisites from "/snippets/sdk-prerequisites.mdx";
@@ -14,7 +14,7 @@ import LinkArguments from "/snippets/link-arguments.mdx";
 
 <Step title="Install">
 
-To install the [Dub Go SDK](https://d.to/go), run the following command:
+To install the [Dub Go SDK](https://dub.co/solutions/go), run the following command:
 
 ```bash bash
 go get github.com/dubinc/dub-go
@@ -47,7 +47,7 @@ d := dub.New(
 
 ## 3. Create link
 
-Let's create a short link using the [Dub Go SDK](https://d.to/go).
+Let's create a short link using the [Dub Go SDK](https://dub.co/solutions/go).
 
 ```go main.go
 func main() {
@@ -70,8 +70,6 @@ func main() {
   <LinkArguments />
 </Accordion>
 
-## 3a. Create link with `externalId`
-
 Optionally, you can also pass an `externalId` field which is a unique identifier for the link in your own database to associate it with the link in Dub's system.
 
 ```go main.go
@@ -92,9 +90,11 @@ func main() {
 }
 ```
 
+This will let you easily [update the link](#5-update-link) or [retrieve analytics](#6-retrieve-analytics-for-link) for it later on using the `externalId` instead of the Dub `linkId`.
+
 ## 4. Upsert link
 
-Dub Go SDK provides a method to create or update a link so you don't have to worry about checking if the link already exists.
+Dub Go SDK provides a method to upsert a link – where an existing link is updated if it exists, or a new link is created if it doesn't. so you don't have to worry about checking if the link already exists.
 
 ```go main.go
 func main() {
@@ -113,6 +113,8 @@ func main() {
 	}
 }
 ```
+
+This way, you won't have to worry about checking if the link already exists when you're creating it.
 
 ## 5. Update link
 
@@ -170,8 +172,9 @@ func main() {
 <CardGroup cols={2}>
   <Card
     title="Go Example"
-    icon="arrow-up-right-from-square"
+    icon="github"
     href="https://github.com/dubinc/examples/tree/main/go"
+    color="#333333"
   >
     See the full example on GitHub.
   </Card>

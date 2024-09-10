@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-description: "Learn how to create a short link using the Dub Ruby SDK."
+description: "Learn how to integrate Dub with Ruby."
 ---
 
 import Prerequisites from "/snippets/sdk-prerequisites.mdx";
@@ -14,7 +14,7 @@ import LinkArguments from "/snippets/link-arguments.mdx";
 
 <Step title="Install">
 
-To install the [Dub Ruby SDK](https://d.to/ruby), run the following command:
+To install the [Dub Ruby SDK](https://dub.co/solutions/ruby), run the following command:
 
 ```bash bash
 gem install dub
@@ -43,7 +43,7 @@ dub.config_security(
 
 ## 3. Create link
 
-Let's create a short link using the [Dub Ruby SDK](https://d.to/ruby).
+Let's create a short link using the [Dub Ruby SDK](https://dub.co/solutions/ruby).
 
 ```ruby index.rb
 req = ::OpenApiSDK::Operations::CreateLinkRequest.new(
@@ -61,8 +61,6 @@ puts res.raw_response.body
   <LinkArguments />
 </Accordion>
 
-## 3a. Create link with `externalId`
-
 Optionally, you can also pass an `externalId` field which is a unique identifier for the link in your own database to associate it with the link in Dub's system.
 
 ```ruby index.rb
@@ -78,9 +76,11 @@ res = dub.links.create(req)
 puts res.raw_response.body
 ```
 
+This will let you easily [update the link](#5-update-link) or [retrieve analytics](#6-retrieve-analytics-for-link) for it later on using the `externalId` instead of the Dub `linkId`.
+
 ## 4. Upsert link
 
-Dub Ruby SDK provides a method to create or update a link so you don't have to worry about checking if the link already exists.
+Dub Ruby SDK provides a method to upsert a link – where an existing link is updated if it exists, or a new link is created if it doesn't. so you don't have to worry about checking if the link already exists.
 
 ```ruby index.rb
 req = ::OpenApiSDK::Operations::UpsertLinkRequest.new(
@@ -93,6 +93,8 @@ res = dub.links.upsert(req)
 
 puts res.raw_response.body
 ```
+
+This way, you won't have to worry about checking if the link already exists when you're creating it.
 
 ## 5. Update link
 
@@ -137,8 +139,9 @@ puts res.raw_response.body
 <CardGroup cols={2}>
   <Card
     title="Ruby Example"
-    icon="arrow-up-right-from-square"
+    icon="github"
     href="https://github.com/dubinc/examples/tree/main/ruby"
+    color="#333333"
   >
     See the full example on GitHub.
   </Card>

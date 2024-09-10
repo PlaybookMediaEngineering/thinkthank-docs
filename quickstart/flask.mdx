@@ -1,6 +1,6 @@
 ---
 title: "Flask"
-description: "Learn how to create a short link using the Flask and Dub Python SDK."
+description: "Learn how to integrate Dub with Flask."
 ---
 
 import Prerequisites from "/snippets/sdk-prerequisites.mdx";
@@ -14,7 +14,7 @@ import LinkArguments from "/snippets/link-arguments.mdx";
 
 <Step title="Install">
 
-To install the [Dub Python SDK](https://d.to/python), run the following command:
+To install the [Dub Python SDK](https://dub.co/solutions/python), run the following command:
 
 ```bash pip
 pip install dub
@@ -42,7 +42,7 @@ d = dub.Dub(
 
 ## 3. Create link
 
-Let's create a short link using the [Dub Python SDK](https://d.to/python).
+Let's create a short link using the [Dub Python SDK](https://dub.co/solutions/python).
 
 ```python app.py
 def create_link():
@@ -57,8 +57,6 @@ def create_link():
   <LinkArguments />
 </Accordion>
 
-## 3a. Create link with `externalId`
-
 Optionally, you can also pass an `externalId` field which is a unique identifier for the link in your own database to associate it with the link in Dub's system.
 
 ```python app.py
@@ -71,9 +69,11 @@ def create_link(request):
   return res.short_link
 ```
 
+This will let you easily [update the link](#5-update-link) or [retrieve analytics](#6-retrieve-analytics-for-link) for it later on using the `externalId` instead of the Dub `linkId`.
+
 ## 4. Upsert link
 
-Dub Python SDK provides a method to create or update a link so you don't have to worry about checking if the link already exists.
+Dub Python SDK provides a method to upsert a link – where an existing link is updated if it exists, or a new link is created if it doesn't. so you don't have to worry about checking if the link already exists.
 
 ```python app.py
 def upsert_link(request):
@@ -83,6 +83,8 @@ def upsert_link(request):
 
   return res.short_link
 ```
+
+This way, you won't have to worry about checking if the link already exists when you're creating it.
 
 ## 5. Update link
 
@@ -146,8 +148,9 @@ def analytics(request):
 <CardGroup cols={2}>
   <Card
     title="Python Example"
-    icon="arrow-up-right-from-square"
+    icon="github"
     href="https://github.com/dubinc/examples/tree/main/python/flask"
+    color="#333333"
   >
     See the full example on GitHub.
   </Card>
